@@ -13,6 +13,6 @@ var PREFERENCES = [
 
 function batch(){
   for(var item in PREFERENCES){
-    exportFile_(PREFERENCES[item]['fileId'], PREFERENCES[item]['toFolderId'])
+    exportToPDF_(PREFERENCES[item]['fileId'], PREFERENCES[item]['toFolderId'])
   }
 }

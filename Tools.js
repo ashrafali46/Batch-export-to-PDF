@@ -1,43 +1,20 @@
-function getExportToPDF_(id) {
-  try{
-    var f = Drive.Files.get(id);
-    return {
-      name: f.title + '.pdf',
-      url: f.exportLinks['application/pdf']
-    };
-  }catch(e){
-    Logger.log(e);
-    return null
+function exportToPDF_(fileId, folderId){
+  var source = DriveApp.getFileById(fileId)
+  var blob = source.getAs('application/pdf');
+  var file = DriveApp.createFile(blob);
+  file.setName(source.getName() + '.pdf');
+  if(folderId) {
+    try{
+      var d = DriveApp.getFolderById(folderId);
+      moveToFolder_(file, d);
+    }
+    catch(e){
+    }
   }
-}
-
-function saveFromPdfURLToFolder_(export, id){
-  var options = {
-    method      : "get",
-    headers     : {"Authorization": "Bearer " + ScriptApp.getOAuthToken()},
-    muteHttpExceptions:true,
-  };
-  var fetch = UrlFetchApp.fetch(export.url, options);
-  var b = fetch.getBlob();
-  var f = DriveApp.createFile(b);
-  try{
-    var d = DriveApp.getFolderById(id);
-    moveToFolder_(f, d);
-  }catch(e){
-  }
-  f.setName(export.name)
-  return f;
+  return file;
 }
 
 function moveToFolder_(file, folder){
   folder.addFile(file);
-  var r = DriveApp.getRootFolder();
-  r.removeFile(file);
-}
-
-function exportFile_(fileId, toFolderId){
-  var export = getExportToPDF_(fileId);
-  if(export) {
-    saveFromPdfURLToFolder_(export, toFolderId)
-  }
+  DriveApp.getRootFolder().removeFile(file);
 }
