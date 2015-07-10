@@ -2,12 +2,12 @@ function onInstall(e){}
 
 var PREFERENCES = [
   {
-    fileId: '1M0fj3QW_ULyEHdsLRZxEMTMHPOBVhtzTpItILzMJLkE',
-    toFolderId: '0B9Ny4eY76JvUfmtvUWhNanFUY3VDcWstTVVBcHlBNlZBOEV5azdMMUx3cGY3dXBpSmluR28'
+    fileId: 'ID_GOOGLE_DRIVE_TYPE_FILE',
+    toFolderId: 'ID_FOLDER'
   },
   {
-    fileId: '1YKTWpNJtIPxEr1JDBIujTalgCArP4gTMtDNO46UAS10',
-    toFolderId: '0B9Ny4eY76JvUfmtvUWhNanFUY3VDcWstTVVBcHlBNlZBOEV5azdMMUx3cGY3dXBpSmluR28'
+    fileId: 'ID_GOOGLE_DRIVE_TYPE_FILE',
+    toFolderId: 'ID_FOLDER'
   }
 ]
 
